@@ -21,6 +21,71 @@ columnmean <- function(x){
   means
 }
 
+# Simulation in R
+
+# generating random numbers
+# rnorm: generate random normal variables with given mean and standard deviation
+# dnorm: evaluate the normal probability density (with a given mean/SD) at a point (or vector of points)
+# pnorm: evaluate the cumulative distribution function for a normal distribution
+# rpois: generate random Poisson variates with a given rate
+
+# probability distributions usualy have four functions, with prefix of: d for density, r for random number generation, p for cumulative distribution, q for quantitle function
+dnorm(x, mean = 0, sd = 1, log = FALSE)
+pnorm(q, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
+qnorm(p, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
+rnorm(n, mean = 0, sd = 1)
+
+# set.seed ensure reporoducibility, can generate the same set of numbers, again and again
+set.seed(1) 
+rnorm(5)
+rnorm(5)
+set.seed(1)
+rnorm(5) # generate the same set of numbers same as the first rnorm
+
+# generate poisson data
+rpois(10, 1)
+rpois(10, 2)
+rpois(10, 20)
+
+# simulate linear model
+set.seed(20) # the argument used as to identify which pair of 'seed', the one in '20' is different from the one stored in '1'
+x <- rnorm(100)
+e <- rnorm(100, 0, 2)
+y <- 0.5+2*x+e
+summary(y)
+plot(x, y)
+
+# when x is binary
+set.seed(10)
+x <- rbinom(100, 1, 0.5)
+e <- rnorm(100, 0, 2)
+y <- 0.5 + 2*x + e
+summary(y)
+plot(x,y)
+
+# simulate from a poisson model
+set.seed(2)
+x <- rnorm(100)
+log.mu <- 0.5+0.3*x
+y <- rpois(100,exp(log.mu))
+plot(x, y)
+
+
+# R Profiler
+# system.time()
+# user time, elapsed time ('wall clock' time)
+system.time(readLines("https://yujietao.me"))
+# random sampling
+set.seed(5)
+sample(1:10, 5)
+sample(letters, 5)
+sample(1:10)
+sample(1:10, replace = TRUE)
+
+# Rprof()
+# runs the profiler for the performance of analysis of R code
+# summaryRprof() summarizes the output of Rprof() and gives percent of time in each function
+
 # Loop in R
 # lapply: Loop over a list and evaluate a function on each elementa
 # sapply: Same as lapply but try to simplify the result
@@ -34,7 +99,7 @@ lapply(x, mean)
 
 x <- 1:4
 lapply(x, runif, min = 0, max = 10) # runif generates n random values
-
+ 
 # lapply in matrix
 x <- list(a = matrix(1:4, 2, 2), b = matrix(1:6,3,2))
 # extract the first column of each matrix
@@ -80,4 +145,13 @@ x <- c(rnorm(10), runif(10), rnorm(10, 1))
 f <- gl(3, 10)
 split(x, f)
 
+# split on more than one level
+x <- rnorm(10)
+f1 <- gl(2, 5)
+f2 <- gl(5, 2)
+interaction(f1, f2)
+
+# str function: compactly display the internal structure of an R object
+# a diagnostic function and an alternative to 'summary'
+# str()
 
