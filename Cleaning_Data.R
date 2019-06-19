@@ -202,6 +202,110 @@ json2[1,1:4]
 
 # Reading from other sources
 
+# Subsetting and sorting
+set.seed(13435)
+X<-data.frame('var1'=sample(1:5), 'var2'=sample(6:10), 'var3'=sample(11:15))
+X<-X[sample(1:5),];
+X$var[c(1:3)] = NA
+
+# first column
+X[,1]
+
+# jsut the var1 column
+X[,'var1']
+
+# first two rows of var2 column
+X[1:2,'var2']
+
+# logicals ands and ors
+X[X$var1 <=3 & X$var3 >11]
+X[X$var1 <=3 | X$var3 > 15]
+
+# deal with missing values
+X[which(X$var2) > 8]
+
+# Sorting
+sort(X$var1)
+sort(X$var1, decreasing = TRUE)
+sort(X$var2, na.last = TRUE)
+
+X[order(X$var1),]
+
+# ordering with plyr
+library(plyr)
+arrange(X, var1)
+arrange(X, desc(var1))
+
+# adding rows and columns
+X$var4 <- rnorm(5)
+Y <- cbind(x.rnorm(5))
+
+# Summarizing data
+summary(restData)
+str(restData)
+quantile(restDataSource$councilDistrict, na.rm=TRUE)
+table(restData$zipCode,useNA='infany')
+
+# check of missing values
+sum(is.na(restData$councilDistrict))
+any(is.na(restData$councilDistrict))
+all(restData$zipCode > 0)
+
+# row and column sums
+colSums(is.na(restData))
+all(colSums(is.na(restData)==0))
+
+# values with specific characteristics
+table(restData$zipCode %in% c('21212'))
+table(restData$zipCode %in% c('12121','212131'))
+
+# calues with specific characterstic
+restData[restData$zipCode %in% c('2121','21213'),]
+
+# cross tabs
+data(UCBAdmissions)
+DF = as.data.frame(UCBAdmissions)
+summary(DF)
+
+xt <- xtabs(Freq~Gender + Admin, data=OF)
+
+# flat tables
+warpbreaks$replicate <- rep(1:9, len = 54)
+xt = xtabs(break ~, data=warpbreaks)
+ftable(xt)
+fkaeData = rnorm(le5) 
+object.size(fakeData)
+
+# Creating variable
+
+# create sequences
+s1 <- seq(1,10, by=2)
+s2 <- seq(1,10, length=3)
+x <- c(1,3,6,25,100)
+
+# create binary variables
+restData$zipWrong = ifelse(restData$zipCode < 0, TRUE, FALSE)
+table(restData$zipWrong, restData$zipCode < 0)
+
+# create categorical varibales
+restData$zipGroups = cut(restData$zipCode, breaks=quantiles(restData$zipCode))
+table(restData$zipGroups)
+
+# easier cutting
+library(Hmisc)
+resData$zipGroups = cut2(restData$zipCode, g=4)
+table(restData$zipGroups)
+
+# create factor variables
+restData$zcf <- factor(restData$zipCode)
+restData$zcf[1:10]
+class(resData$zcf)
+
+# levels of factor variables
+yesno <- sample(c('yes','no'), size=10, replace=TRUE)
+yesnofac = factor(yesno, levels=c('yes','no'))
+relevel(yesnofac, ref='yes')
+as.numeric(yesnofac)
 
 
 
