@@ -308,6 +308,54 @@ relevel(yesnofac, ref='yes')
 as.numeric(yesnofac)
 
 
+# Reshaping data
+library(reshape2)
+mtcars$carsname <- rownames(mtcars)
+
+# specify which are id variabels and which are vars variable
+carMelt <- melt(mtcars, id=c('carname','gear','cyl'), measure.vars=c('mpg','hp'))
+tail(carMelt, n=3)
+
+# casting dataframe
+# aggregate by different variable  types count
+cylData <- dcast(carMelt, cyl~variable)
+
+cylData <- dcast(carMelt, cyl!variable,mean)
+
+# average values
+head(InsectSprays)
+tapply(InsectSprays$count, InsectSpray$spray, sum)
+
+# split
+spIns = split(InsectSprays$count, InsectSprays$spray)
+
+# apply
+sprCount = lapply(spIns, sum)
+
+# combine
+unlist(sprCount)
+sapply(spIns, sum)
+
+# plyr package
+ddply(InsectSprays,.(spray), summarize, sum=sum(count))
+
+# create a new variable
+spraySums <- ddply(InsectSprays,.(spray), summarize, sum=ave(count,FUN=SUM))
+
+# Merging data
+names(reviews)
+names(solutions)
+mergedData = merge(reviews, solution, by.x='solution_id', by.y='id',all=TRUE)
+head(mergedData)
+
+# merge all common column name
+intersect(names(solutions), names(reviews))
+mergedData2 = merge(reviews, solutions, all=TRUE)
+
+# using join in the plyr package
+df1 = data.frame(id=sample(1:10), x=rnorm(10))
+df2 = data.frame(id=sample(1:10), x=rnorm(10))
+arrange(join(df1, df2), id )
 
 
   
