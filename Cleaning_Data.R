@@ -358,4 +358,46 @@ df2 = data.frame(id=sample(1:10), x=rnorm(10))
 arrange(join(df1, df2), id )
 
 
+# Editing text variables
+# fixing character vectors
+splitNames = strsplit(names(camerData),'\\.')
+splitNames[[5]]
+
+splitNames[[6]]
+
+# list
+mylist <- list(letters=c('A','b','c'), numbers = 1:3, matrix(1:25,ncol=5))
+head(mylist)
+mylist[1]
+mylist$letters
+mylist[[1]]
+
+# fixing character vectors -sapply()
+splitNames[[6]][]
+firstElement <- function(x){x[1]}
+sapply(splitNames, firstElement)
+
+testNames <- 'this_is_a_test'
+sub('_','',testNames)
+gsub('_','',testNames)
+
+# finding values
+grep('Alamenda', camerData$intersection)
+table(grep('Alameda', camerData$intersection))
+camerData2 <- camera[!grepl('Alameda', cameraData$intersection),]
+grep('Alameda', camerData$intersection,value=TRUE)
+grep('JeffStreet', camerData$intersection)
+length(grep('JeffStreet',camerData$itnersection))
+
+library(stringr)
+nchar('Jeffery Leek')
+substr('Jeffery Leek', 1,1)
+paste0('Jeff', 'Leak') # paste thing together without space in between
+
+# Regular expressions
+ 
+# [^?.]$ find line that ends at anything other than period or question mark
+
+
+
   
