@@ -398,6 +398,34 @@ paste0('Jeff', 'Leak') # paste thing together without space in between
  
 # [^?.]$ find line that ends at anything other than period or question mark
 
+# . referes to any characters
+# | refers to or
+# () for and
+# ? for optional
+# \. means consider the dot as leteral dot, rather than a metacharacters
+# * and + are signs to indicate repetition, * means any number, + means at least one of them
+# {} refers to inverval quantiifiers
+
+
+# Working with dates
+d2 = Sys.date()
+class(d2)
+format(d2, '%a %b %d')
+
+weekdays(d2)
+months(d2)
+julian(d2)
+
+library(lubridate)
+ymd('20140108')
+mdy('08/04/2019')
+dmy('03-04-2013')
+
+ymd_hms('2011-08-03 10:15:03')
+ymd_hms('2011-08-03 10:15:03', tz='Pacific/Auckland')
+
+ 
+
 
 
   
