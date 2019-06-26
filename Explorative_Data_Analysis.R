@@ -75,6 +75,23 @@ points(x[g == 'Male'], y[g == 'Male'], col = 'green')
 points(x[g == 'Female'], y[g == 'Female'], col = 'blue')
 
 
+# Graphical Device
+
+library(datasets)
+with(faithful, plot(eruptions, waiting))
+title(main = 'Old Faithful Geyser data')
+
+pdf(file = 'myplot.pdf')
+with(faithful, plot(eruptions, waiting))
+title(main = 'Old Faithful Geyser data')
+dev.off()
+
+# Copying plots
+library(datasets)
+with(fiathful, plot(eruptions, waiting))
+title(main = 'Old Faithful Geyser data')
+dev.copy(png, file= 'greyserplot.png')
+dev.off()
 
 
 
