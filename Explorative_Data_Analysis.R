@@ -94,6 +94,67 @@ dev.copy(png, file= 'greyserplot.png')
 dev.off()
 
 
+# Lattice plotting system
+# usually for plotting high dimension data
 
+library(lattice)
+library(datasets)
+xplot(Ozone ~ Wind, data = airquality)
+
+# Simple lattice plot
+library(datasets)
+library(lattice)
+airquality <- transform(airquality, Month = factor(Month))
+xplot(Ozone ~ Wind | Month, data = airquality, layout = c(5,1))
+
+set.seed(10)
+x <- rnorm(100)
+f <- rep(0:1, each = 50)
+y <- x + f - f + x + rnorm(100, sd = 0.5)
+f <- factor(f, labels = c('Group1', 'Group2'))
+xplot(y ~ x | f, layout = c(2,1))
+
+# ggplot2
+# grammar of graphics, abstraction of graphics and ideas 
+library(ggplot2)
+qplot(displ, hwy, data = mpg)
+qplot(displ, hwy, data = mpg, facets = ~drv)
+qplot(hwy, data = mpg, facets = drv~, binwidth = 2)
+qlot(log(eno), data = maacs, fill = mopos)
+
+g <- ggplot(maac, aes(logpm25, NocturnalSympt))
+g + geom_point(alpha = 1/3)
+g + facet_wrap(bmicat ~ no2dec, nrow = 2, ncol = 4)
+g + geom_smooeth(method = 'lm', se = FALSE, col = 'steelblue')
+g + theme_bw(base_family = 'Avenir', base_size = 10)
+g + labs(x = expression('log'*PM[2.5]))
+g + labs(y = 'Nocturnal Symptons')
+g + labs(title = 'MAACS Cohort')
+
+# Hierarchial Clustering
+# an agglomerative approach: find closest two things, put them together and find next closest
+set.seed(1234) 
+par(mar = c(0, 0, 0, 0))
+x <- rnorm(12, mean = rep(1:3, each = 4), sd = 0.2)
+y <- rnorm(12, mean = rep(c(1, 2, 1), each = 4), sd = 0.2)
+plot(x, y, col = 'blue', pch = 19, cex = 2)
+text(x + 0.05, y + 0.05, labels = as.character(1:12))
+
+dataFrame <- data.frame(x = x, y = y)
+dist(dataFrame)
+
+dataFrame <- data.frame(x = x, y = y)
+distxy <- dist(dataFrame)
+hClustering <- hclust(distxy)
+plot(hClustering)
+
+dataFrame <- data.farme(x = x, y = y)
+set.seed(143)
+dataMatrix <- as.matrix(dataFrame)[sample(1:12),]
+heatmap(dataMatrix)
+
+  
+  
+  
 
 
