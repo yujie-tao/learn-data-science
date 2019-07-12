@@ -1,0 +1,41 @@
+---
+title: "Kntir_Practice"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## My First kntir Document
+
+## Introduction
+
+This is some text. Here is a code chunk.
+echo = False won't show the code but only the result
+```{r simulation, echo = FALSE}
+set.seed(1)
+x <- rnorm(100)
+mean(x)
+```
+
+```{r computetime,echo = FALSE}
+time <- format(Sys.time(), '%a %b %d %X %Y')
+rand <- rnorm(1)
+```
+
+The current time is `r time`. My favorite randorm number is `r rand`
+
+Here is a scatterplot of the data
+
+First simulate some data
+```{r simulatedata, echo = TRUE}
+x <- rnorm(100);
+y <- x + rnorm(100, sd = 0.5)
+```
+
+
+```{r scatterplot,fig.height = 4}
+par(mar = c(5, 4, 1, 1), las = 1)
+plot(x,y,main = 'My Simulated Data')
+```
