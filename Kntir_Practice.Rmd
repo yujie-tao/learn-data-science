@@ -27,7 +27,7 @@ rand <- rnorm(1)
 The current time is `r time`. My favorite randorm number is `r rand`
 
 Here is a scatterplot of the data
-
+：）
 First simulate some data
 ```{r simulatedata, echo = TRUE}
 x <- rnorm(100);
