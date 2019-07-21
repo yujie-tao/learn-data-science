@@ -43,7 +43,9 @@
    # Taking the mean ad adding and substracting the relevant normal quantiles times the SE yields a confidence interval for the mean
      # - Adding and substracting 2 SEs works for 95% intervals
   
-  
-  
+
+# T confidence intervals
+  # The t interval technically assumes that the data are iid normal, though it is robust to this assumption
+  # Use T index rather than Z index, wider than normal, the more data, the more closer T distribution ton normal distribution
   
   
