@@ -69,5 +69,17 @@
     # If P-value is small. then either H0 is true, and we observed a rare event or Ha is false
     # P indicates that, given a normal rate, wheteher the existed rate, is extreme enough. When p is small, it means that the existing rate is rare and H0 is true.
     # E.g. Assume under 100 patients, 10 people get infected and if over 10 people get infected, we implement some regulation in response. But we also don't want to implement response by random number, like 20, we want to make sure 20 is truly bad infection sitution based on the scenario. We can calculate the P value here.
+
+# Power
+  # Power is the probability of rejecting the null hypothesis when it is false
+  mu0 = 30
+  mua = 32
+  sigma = 4
+  n = 16
+  z <- qnorm(1-alpha)
+  pnorm(mu0 + z*sigma/sqrt(n), mean = mu0, sd = sigma/sqrt(n), lower.tail = FALSE)
+  
+  pnorm(mu0 + z*sigma/sqrt(n), mean = mua, sd = sigma/sqrt(n), lower.tail = FALSE)
+    
   
   
