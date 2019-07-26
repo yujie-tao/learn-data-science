@@ -91,7 +91,15 @@
   B <- 10000
   resamples <- matrix(sample(x, n*B, replace = TRUE), B,n)
   resamplesMedians <- apply(resamples, 1, median)
-  
+
+# Permutation tests
+  # Group compariosn
+  # Consider null hypothesis that the distribution of observations from each group is the same
+  # Then, the group labels are irrelevant
+  # Consider a data frame with count and spray
+  # Permute the spray (group) labels
+  # Recalculate statistics
+  # Calculate the percentage of simulations where the simulated statistics was more extreme than the observed
   
   
   
