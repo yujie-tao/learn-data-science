@@ -78,8 +78,21 @@
   n = 16
   z <- qnorm(1-alpha)
   pnorm(mu0 + z*sigma/sqrt(n), mean = mu0, sd = sigma/sqrt(n), lower.tail = FALSE)
-  
   pnorm(mu0 + z*sigma/sqrt(n), mean = mua, sd = sigma/sqrt(n), lower.tail = FALSE)
     
+# Bootstrapping
+  # Tool for constructing intervals and calculating standard errors for difficult statistics
+  # Suppose that we have a statistic that estimates some population parameter but we don't know its smapling distribution
+  # The boostrap priniciple suggests using the distribution difined by the data to approximate its sampling distribution
+  library(UsingR)
+  data(father.son)
+  x <- farther.son$sheight
+  n <- length(x)
+  B <- 10000
+  resamples <- matrix(sample(x, n*B, replace = TRUE), B,n)
+  resamplesMedians <- apply(resamples, 1, median)
+  
+  
+  
   
   
