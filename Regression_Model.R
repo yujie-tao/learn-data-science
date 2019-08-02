@@ -21,3 +21,10 @@ fit2 <- lm(price ~ I(carat - mean(carat), data = diamond))
 coef(fit2)
 
 # Residuals
+data(diamond)
+y <- diamond$price;
+x <- diamond$carat
+n <- length(y)
+fit <- resid(fit)
+yhat <- predict(fit)
+max(abs(e- (y-yhat)))
