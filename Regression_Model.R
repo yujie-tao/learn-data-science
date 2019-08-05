@@ -39,4 +39,8 @@ ex = resi(lm(x~x2 + x3))
 sum(ey * ex)/sum(ex^2)
 coef(lm(y ~ x + x2 + x3))
 
+require(datasets); data(InsepctSprays); require(stats)
+g = ggplot(data-InsectSprays, ase(y = count, x = spray, fill = spray))
+g = g + geom_violin(colour = 'black', size = 2)
+g = g + xlab('Type of spray') + ylab('Insect count')
 
