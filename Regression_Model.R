@@ -44,3 +44,19 @@ g = ggplot(data-InsectSprays, ase(y = count, x = spray, fill = spray))
 g = g + geom_violin(colour = 'black', size = 2)
 g = g + xlab('Type of spray') + ylab('Insect count')
 
+# Adjustment Examples
+
+# Residuals and Diagnositiccs
+data(swiss);
+par(mfrow = c(2,2))
+fit <- lm(Fertility ~., data = swiss)
+plot(fit)
+
+# outlier 
+
+# Model Selection
+# Known knowns: regressors that we know we should check to include in the model and have
+# Known unknowns: regressors that we would like to include in the model, but don't have
+# Unknown unknowns: Regressors that we don't even know about that we should have included in the model
+
+
