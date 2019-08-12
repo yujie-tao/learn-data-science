@@ -59,4 +59,17 @@ plot(fit)
 # Known unknowns: regressors that we would like to include in the model, but don't have
 # Unknown unknowns: Regressors that we don't even know about that we should have included in the model
 
+# Logistic Regression
+x <- seq(-10, 10, length = 1000)
+manipulate(
+  plot(x, exp(beta0 + beta1*x)/(1 + exp(beta0 + beta1*x)), type = '1', lwd = 3, frame = FALSE),
+  beta1 = slider(-2, 2, step = 0.1, intial = 2),
+  beta0 = slider(-2, 2, tep = 0.1, initial = 0)
+)
+logRegRavens <- glm(ravensData$ravenWinNum ~ ravenData$ravenScore, family='binomial')
+summary(logRegRavens)
+
+exp(logRegRaven$coeff)
+exp(confint(logregRavens))
+anova(logRegRavens, test = 'Chisq')
 
