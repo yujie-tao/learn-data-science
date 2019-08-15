@@ -59,6 +59,22 @@ plot(fit)
 # Known unknowns: regressors that we would like to include in the model, but don't have
 # Unknown unknowns: Regressors that we don't even know about that we should have included in the model
 
+# Generalized Linear Models
+# Linear modeels
+# - Most useful applied statistical technique
+# - Transformation are often hard to interpret
+
+# Generalized linear models
+# Three components
+# - An exponential family model for the response
+# - A systematic component via a linear predictor
+# - A link function that connects the menas of the response of the linear predictor
+
+# Poisson Regression
+par(mfrow = c(1,3))
+plot(0:10, dpos(0:10, lambda = 2), type = 'h', frame = FALSE)
+
+
 # Logistic Regression
 x <- seq(-10, 10, length = 1000)
 manipulate(
