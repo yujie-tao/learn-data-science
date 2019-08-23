@@ -24,4 +24,41 @@ lines(density(spam$Your[spam$type=='spam']),col='red')
 
 # Cross validation
 # K-fold, larger k - less bias, more variance; smaller k - more bias ,less variance
-# Leave one out 
+# Leave one out    
+
+# Caret Package
+library(caret); library(kernelab); data(spam)
+inTrain <- createDataPartition(y=spam$type, p=0.75, list=FALSE)
+training <- spam[inTrain,]
+testing <- spam[-inTrain,]
+dim(training)
+
+# Data spliting
+library(caret); library(kernlab); data(spam)
+inTrain <- createDataPartition(y=spam$type, p=0.75, list=FALSE)
+training <- spam[inTrain,]
+testing <- spam[-inTrain,]
+dim(training)
+
+# Training options
+
+# Plotting predictors
+library(ISLR);
+library(gplot2);
+library(caret);
+
+data(Wage)
+summary(Wage)
+
+inTrain = createDataPartition(y=Wage$wage, p=0.7, list=FALSE)
+training <- Waage[inTrain,]
+testing <- Wage[-Train,]
+dim(training); dim(testing)
+  
+featurePlot(x=training[, c('age','education',
+                        jobclass)], y=trainin$wage, plot='pairs')
+
+featurePlot(x=training[, c('age','education','jobcalss')], y=training$wage, plot='pairs')
+
+
+
