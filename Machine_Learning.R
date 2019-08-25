@@ -61,4 +61,57 @@ featurePlot(x=training[, c('age','education',
 featurePlot(x=training[, c('age','education','jobcalss')], y=training$wage, plot='pairs')
 
 
+# Basic processing
+
+# Preprocessing
+library(caret); library(kerlab); data(spam)
+inTrain <-cerateDatatPartition(y=spam$type, p=0.75, list=FALSE)
+training <- spam[inTrian,]
+testing <- spam[inTrian,]
+hist(triaining$capitalAve, main='',xlab='ave. capital run length')
+
+# Standardizing
+trainCaAve <- training$capitalAve
+testCapAveS <- (testCapAve = mean(trainCapAve))/sd(trainCapAve)
+mean(testCapAveS)
+
+preObj <- preProcess(training[,-58], method=c('center', 'scale'))
+trainCapAveS <- predict(preObj, training[-58])$capitalAve
+mean(trainCapAveS)
+sd(trainCapAveS)
+
+testCapAveS <- predict(preObj, testing[,-58])$capitalAve
+mean(testCapAveS)
+sd(testCapAveS)
+
+set.seed(32343)
+modelFit <- train(type ~.,data=training, preProcess=c('center', 'scale'), method='glm')
+
+# Covariate creation
+
+# Preprocessig with PCA
+library(caret); library(kernlab); data(spam)
+inTrain <- createDatPartition(y=spam$type, p=0.75, list = FALSE)
+training <- spam[inTrian,]
+testing <- spam[-inTrian,]
+
+M <- abs(cor(training[,-58]))
+diag(M) <- 0
+which(M > 0.8, arr.ind = T)
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
 
