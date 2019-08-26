@@ -98,20 +98,55 @@ testing <- spam[-inTrian,]
 M <- abs(cor(training[,-58]))
 diag(M) <- 0
 which(M > 0.8, arr.ind = T)
-  
-  
-  
-  
+
+preProc <- preProcess(log10(spam[,-58]+1), method='pca',pcaComp=2)
+spamPC <- predict(preProc, log10(spam[,-58]+1))
+plot(spamPC[,1],spamPC[,2],col=typeColor)
 
 
+# Predicting with regression
+lm1 <- lm(eruptions ~ waiting, data=trainFaith)
+summary(lm1)
 
+plot(trainFaith$waiting, trainFaith$eruptions, pch=19, col='blue', xlab='Waiting', ylab='Duration') 
+lines(trainFaith$waiting, lm1$fitted, lwd=3)
 
+coef(lm1)[1]+coef(lm1)[2]*80
+newdata <- data.frame(waiting=80)
+predict(lm1, newdata)
 
+sqrt(sum(lm1$fitted-trainFaith$eruption)^2)
+sqrt(sum(predict(lm1, newdata=testFaith)-testFaith$eruptions)^2)
 
+modFit <- train(eruptions ~ waiting, data=trainFaith, method='lm')
+summary(modFit$finalModel)
 
+# Predicting with regression multiple
+library(ISLR); library(ggplot); library(caret);
+data(Wage); Wage <- subset(Wage, select=-c(logwage))
+summary(Wage)
 
+inTrain <- createDataPartition(y=Wage$wage, p=0.7, list=FALSE)
+training <- Wage[inTrain,]; testing <- Wage[-inTrain,]
+dim(training); dim(testing)
 
+featurePlot(x=training[,c('age','education','jobclass')], y=training$wage, plot='pairs')
+qplot(age, wage, colour=jobclass, data=training)
+qplot(age, wage, colour=education, data=training)
 
+modFit <- train(wage~age + jobclass+education, method='lm', data=training)
+finMod <- modFit$finalModel
+print(modFit)
+
+plot(finMod, pch=19, cex=0.5, col='#0000010')
+plot(finMod$residuals, pch=19)
+
+pred = predict(modFit, testing)
+qplot(wage, pred, colour=year, data=testing)
+
+modFitAll <- train(wage~., data=training, method='lm')
+pred <- predict(modFitAll, tesitng)
+qplot(wage, pred, data=testing)
 
 
 
