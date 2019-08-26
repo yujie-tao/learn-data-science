@@ -148,5 +148,60 @@ modFitAll <- train(wage~., data=training, method='lm')
 pred <- predict(modFitAll, tesitng)
 qplot(wage, pred, data=testing)
 
+# Predicting with trees
+# - Iteratively split variables into groups
+# - Evaluate homogenity within eachgroup
+# Split again if necessary
+
+# Pros
+# - Easy to interpret
+# - Better performance in nonlinear setting
+
+# Cons
+# - Without pruning/cross-validation can lead to overfitting
+# - Harder to estimate uncertainty
+# - Results may be variable
+
+library(caret)
+modFit <- train(Species ~.method='repart', data=training)
+print(modFit$finalModel)
+
+plot(modFit$finalModel, uniform=TRUE, main='Classification Tree')
+text(modFit$finalModel, use.n=TRUE, all=TRUE, cex=.8)
+
+# Bagging
+# - Resample cases and recalculate predictions
+# - Average or majority vote
+# - Similar bias
+# - Reduced variance
+# - More useful for on-linear functions
+
+library(ElemStatLearn); data(ozone, package='EleStatLearn')
+ozone <- ozone[order(ozone$ozone),]
+head(ozone)
+li <- matrix(NA, nrow, ncol=155)
+for(i in 10){
+  ss <- sample(1:dim(ozone)[1], replace=T)
+  ozone0 <- ozone[ss,]; oznoe0 <- ozone0[order(ozone$ozone),]
+  loess0 <- loess(temperature ~ ozone, data=ozone0, span=0.2)
+  li[i,] <- predict(loss0, newdata=data.frame(ozone=1:555))
+}
+
+plot(ozone$ozone, ozone$temperature, pch=19, cex=0.5)
+for(i in i:10){lines(1:155, li[i,], col='grey', lwd=2)}
+lines(1:155, apply(ll,2,mean),col='red', lwd=2)
+
+# Random forests
+# - Bootstrap samples
+# - At each split, bootstrap variables
+# - Grow multiple trees and vote
+
+library(caret)
+modFit <- train(Species~., data=training, method='rf', prox=TRUE)
+modFit
+
+
+
+
 
 
