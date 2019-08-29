@@ -200,6 +200,23 @@ library(caret)
 modFit <- train(Species~., data=training, method='rf', prox=TRUE)
 modFit
 
+# Boosting
+# - Take lots of weak predoctprs
+# - Weigh them and add them up
+# - Give a stronger predictor
+
+# Model based prediction
+# Assume the data follow a probablistic model
+
+# Pro
+# - Can take advantage of structure of the data
+# - May be computionally convenient
+# - Are reasonably accurate on real problem
+
+# Cons
+# - Make additional assumptions about the data
+# - When the model is incorrect you may get reduced accuracy
+
 
 
 
