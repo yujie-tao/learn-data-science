@@ -201,7 +201,7 @@ modFit <- train(Species~., data=training, method='rf', prox=TRUE)
 modFit
 
 # Boosting
-# - Take lots of weak predoctprs
+# - Take lots of weak predictors
 # - Weigh them and add them up
 # - Give a stronger predictor
 
@@ -217,8 +217,23 @@ modFit
 # - Make additional assumptions about the data
 # - When the model is incorrect you may get reduced accuracy
 
+# Regularized regression
+# - Fit a regression model
+# - Polarize (or shrink) large coefficient
 
+# Pros:
+# - Can help with bias/variance tradeoff
+# - Can help with model selection
 
+# Cons:
+# - May be computationally demanding on alrge data sets
+# - Does not perform as well as random forest and boosting
+
+# Combining predictors
+
+# Forecasting
+
+# Unsupervised prediction
 
 
 
